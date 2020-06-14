@@ -19,27 +19,27 @@ function createWindow() {
 
   win.loadFile('index.html');
 
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 
   let menu = Menu.buildFromTemplate([
     {
-      label: "Файл",
+      label: "File",
       submenu: [
         {
-          label: 'Выход',
+          label: 'Close',
           role: "quit",
         },
         {
-          label: 'Обновить',
+          label: 'Reload',
           role: "reload",
         },
       ],
     },
     {
-      label: "Колір",
+      label: "Color",
       submenu: [
         {
-          label: 'Білий',
+          label: 'White',
           id: 'White',
           type: 'checkbox',
           checked: false,
@@ -55,7 +55,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Жовтий',
+          label: 'Yellow',
           id: 'Yellow',
           type: 'checkbox',
           checked: true,
@@ -71,7 +71,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Світло-зелений',
+          label: 'Green',
           id: 'Green',
           type: 'checkbox',
           checked: false,
@@ -87,7 +87,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Блакитний',
+          label: 'Blue',
           id: 'Blue',
           type: 'checkbox',
           checked: false,
@@ -103,7 +103,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Рожевий',
+          label: 'Pink',
           id: 'Pink',
           type: 'checkbox',
           checked: false,
@@ -119,7 +119,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Померанчевий',
+          label: 'Orange',
           id: 'Orange',
           type: 'checkbox',
           checked: false,
@@ -135,7 +135,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Сірий',
+          label: 'Grey',
           id: 'Grey',
           type: 'checkbox',
           checked: false,
@@ -153,10 +153,10 @@ function createWindow() {
       ],
     },
     {
-      label: "Фігура",
+      label: "Shape",
       submenu: [
         {
-          label: 'Точка',
+          label: 'Point (Brush)',
           id: 'PointShape',
           type: 'checkbox',
           checked: true,
@@ -171,7 +171,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Лінія',
+          label: 'Line',
           id: 'LineShape',
           type: 'checkbox',
           checked: false,
@@ -186,7 +186,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Прямокутник',
+          label: 'Rectangle',
           id: 'RectShape',
           type: 'checkbox',
           checked: false,
@@ -201,7 +201,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Еліпс',
+          label: 'Ellipse',
           id: 'EllipseShape',
           type: 'checkbox',
           checked: false,
@@ -216,7 +216,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Лінія с кружочками',
+          label: 'Line \'n\' Circles',
           id: 'LineOOShape',
           type: 'checkbox',
           checked: false,
@@ -231,7 +231,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Каркас кубу',
+          label: 'Cube',
           id: 'CubeShape',
           type: 'checkbox',
           checked: false,
@@ -248,10 +248,10 @@ function createWindow() {
       ],
     },
     {
-      label: "Заповненния",
+      label: "Fill",
       submenu: [
         {
-          label: 'Вкл',
+          label: 'On',
           id: 'fillOn',
           type: 'checkbox',
           checked: true,
@@ -262,7 +262,7 @@ function createWindow() {
           },
         },
         {
-          label: 'Выкл',
+          label: 'Off',
           id: 'fillOff',
           type: 'checkbox',
           checked: false,
@@ -275,10 +275,10 @@ function createWindow() {
       ],
     },
     {
-      label: "Справка",
+      label: "Help",
       submenu: [
         {
-          label: 'О программе...',
+          label: 'About',
           click() {
             About.Create(win);
           },
