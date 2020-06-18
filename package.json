@@ -1,8 +1,8 @@
 {
-  "name": "lab4burlakov",
+  "name": "electron-paint-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "electron ."
   },

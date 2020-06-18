@@ -1,9 +1,9 @@
 window.addEventListener('load', () => {
     const { Menu } = require('electron').remote;
 
-    const constants = require('./modules/constants');
+    const constants = require('../modules/constants');
 
-    const Shape = require("./Shape.js");
+    const Shape = require("../modules/Shape.js");
 
     const colors = constants.colors;
 
@@ -18,8 +18,6 @@ window.addEventListener('load', () => {
     const LineOOShape = Shape.LineOOShape;
     const CubeShape = Shape.CubeShape;
 
-    console.log(Object.keys(Shape));
-
     function colorSwitch(newColorName, newColorCode) {
         color = newColorCode;
 
@@ -32,7 +30,7 @@ window.addEventListener('load', () => {
 
     function initColors(defaultColorCode) {
         const submenu = [];
-        
+
         colors.forEach((e) => {
             const menuItem = {
                 label: e.name,
@@ -67,7 +65,7 @@ window.addEventListener('load', () => {
 
     function initShapes(defaultShapeName) {
         const submenu = [];
-        
+
         Object.keys(Shape).forEach((e) => {
             const menuItem = {
                 label: Shape[e].label,
@@ -229,4 +227,10 @@ window.addEventListener('load', () => {
     window.global.canvas.addEventListener("mousedown", startPosition);
     window.global.canvas.addEventListener("mousemove", show);
     window.global.canvas.addEventListener("mouseup", finishedPosition);
+
+    window.onresize = function () {
+        window.global.canvas.height = window.innerHeight;
+        window.global.canvas.width = window.innerWidth;
+        shapes.forEach(shape => shape.Draw());
+    }
 });
