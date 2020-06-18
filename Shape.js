@@ -8,6 +8,7 @@ class Shape {
 }
 
 class PointShape extends Shape {
+    static label = 'Point (Brush)';
 
     DrawPoint(x1, y1, x2, y2) {
         window.global.ctx.setLineDash([]);
@@ -39,6 +40,7 @@ class PointShape extends Shape {
 }
 
 class LineShape extends Shape {
+    static label = 'Line';
 
     BeginPath() {
         window.global.ctx.beginPath();
@@ -78,6 +80,8 @@ class LineShape extends Shape {
 }
 
 class RectShape extends Shape {
+    static label = 'Rectangle';
+
     constructor(x1, y1, x2, y2, color, fill) {
         super(x1, y1, x2, y2);
         this.color = color;
@@ -105,6 +109,8 @@ class RectShape extends Shape {
 }
 
 class EllipseShape extends Shape {
+    static label = 'Ellipse';
+
     constructor(x1, y1, x2, y2, color, fill) {
         super(x1, y1, x2, y2);
         this.color = color;
@@ -136,6 +142,7 @@ class EllipseShape extends Shape {
 }
 
 class LineOOShape extends EllipseShape {
+    static label = 'Line \'n\' Circles';
     
     DrawOO() {
         function buildUnitVector(p1, p2, uVect) {
@@ -181,6 +188,8 @@ class LineOOShape extends EllipseShape {
 }
 
 class CubeShape extends LineShape {
+    static label = 'Cube';
+
     constructor(x1, y1, x2, y2, color, fill) {
         super(x1, y1, x2, y2);
         this.color = color;
