@@ -20,76 +20,6 @@ window.addEventListener('load', () => {
     const LineOOShape = Shape.LineOOShape;
     const CubeShape = Shape.CubeShape;
 
-    function colorSwitch(newColorName, newColorCode) {
-        color = newColorCode;
-
-        for (const e in colors) {
-            menu.getMenuItemById(e.name).checked = false;
-        }
-
-        menu.getMenuItemById(newColorName).checked = true;
-    }
-
-    function initColors(defaultColorCode) {
-        const submenu = [];
-
-        colors.forEach((e) => {
-            const menuItem = {
-                label: e.name,
-                id: e.name,
-                type: 'checkbox',
-                checked: false,
-                click() {
-                    colorSwitch(e.name, e.code);
-                }
-            }
-
-            if (e.code === defaultColorCode) {
-                menuItem.checked = true;
-                color = defaultColorCode;
-            }
-
-            submenu.push(menuItem);
-        });
-
-        return submenu;
-    }
-
-    function shapeSwitch(newShapeName) {
-        shape = newShapeName;
-
-        Object.keys(Shape).forEach((e) => {
-            menu.getMenuItemById(e).checked = false;
-        });
-
-        menu.getMenuItemById(newShapeName).checked = true;
-    }
-
-    function initShapes(defaultShapeName) {
-        const submenu = [];
-
-        Object.keys(Shape).forEach((e) => {
-            const menuItem = {
-                label: Shape[e].label,
-                id: e,
-                type: 'checkbox',
-                checked: false,
-                click() {
-                    shapeSwitch(e);
-                }
-            }
-
-            if (e === defaultShapeName) {
-                menuItem.checked = true;
-                shape = defaultShapeName;
-            }
-
-            submenu.push(menuItem);
-        });
-
-        return submenu;
-    }
-
     const menu = Menu.buildFromTemplate([
         {
             label: "File",
@@ -106,11 +36,67 @@ window.addEventListener('load', () => {
         },
         {
             label: "Color",
-            submenu: initColors(color)
+            submenu: ((defaultColorCode) => {
+                const submenu = [];
+        
+                colors.forEach((e) => {
+                    const menuItem = {
+                        label: e.name,
+                        id: e.name,
+                        type: 'checkbox',
+                        checked: false,
+                        click() {
+                            color = e.code;
+                            for (const elem in colors) {
+                                menu.getMenuItemById(elem.name).checked = false;
+                            }
+                            menu.getMenuItemById(e.name).checked = true;
+                        }
+                    }
+        
+                    if (e.code === defaultColorCode) {
+                        menuItem.checked = true;
+                        color = defaultColorCode;
+                    }
+        
+                    submenu.push(menuItem);
+                });
+        
+                return submenu;
+            })(color)
         },
         {
             label: "Shape",
-            submenu: initShapes(shape)
+            submenu: ((defaultShapeName) => {
+                const submenu = [];
+        
+                Object.keys(Shape).forEach((e) => {
+                    const menuItem = {
+                        label: Shape[e].label,
+                        id: e,
+                        type: 'checkbox',
+                        checked: false,
+                        click() {
+                            shape = e;
+        
+                            Object.keys(Shape).forEach((elem) => {
+                                menu.getMenuItemById(elem).checked = false;
+                            });
+        
+                            menu.getMenuItemById(e).checked = true;
+                        }
+                    }
+        
+                    if (e === defaultShapeName) {
+                        menuItem.checked = true;
+                        shape = defaultShapeName;
+                    }
+        
+                    submenu.push(menuItem);
+                });
+        
+                return submenu;
+            })(shape)
         },
         {
             label: "Fill",

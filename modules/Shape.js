@@ -20,7 +20,7 @@ class PointShape extends Shape {
         window.global.ctx.beginPath();
 
         if (x1 === x2 && y1 === y2) {
-            window.global.ctx.arc(x1, y1, 2, 0, Math.PI * 2, true);
+            window.global.ctx.arc(x1, y1, this.lineWidth / 2, 0, Math.PI * 2, true);
             window.global.ctx.closePath();
             window.global.ctx.fillStyle = 'black';
             window.global.ctx.fill();
