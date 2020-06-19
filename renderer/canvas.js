@@ -1,7 +1,9 @@
 window.addEventListener('load', () => {
     const { Menu } = require('electron').remote;
 
-    const constants = require('../modules/constants');
+    const About = require('./About.js');
+
+    const constants = require('../modules/constants.js');
 
     const Shape = require("../modules/Shape.js");
 
@@ -156,8 +158,12 @@ window.addEventListener('load', () => {
     window.global.canvas = document.getElementById('canvas');
     window.global.ctx = canvas.getContext('2d');
 
-    window.global.canvas.height = window.innerHeight;
-    window.global.canvas.width = window.innerWidth;
+    function setCanvasSize() {
+        window.global.canvas.height = window.innerHeight;
+        window.global.canvas.width = window.innerWidth;
+    }
+
+    setCanvasSize();
 
     let x1, y1, x2, y2;
 
@@ -217,7 +223,7 @@ window.addEventListener('load', () => {
         x2 = parseInt(e.clientX);
         y2 = parseInt(e.clientY);
 
-        eval(`shapes.push(new ${shape}(x1, y1, x2, y2, color, fill)) `);
+        eval(`shapes.push(new ${shape}(x1, y1, x2, y2, color, fill))`);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -228,9 +234,8 @@ window.addEventListener('load', () => {
     window.global.canvas.addEventListener("mousemove", show);
     window.global.canvas.addEventListener("mouseup", finishedPosition);
 
-    window.onresize = function () {
-        window.global.canvas.height = window.innerHeight;
-        window.global.canvas.width = window.innerWidth;
+    window.onresize = () => {
+        setCanvasSize();
         shapes.forEach(shape => shape.Draw());
     }
 });

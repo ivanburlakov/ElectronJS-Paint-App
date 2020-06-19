@@ -4,6 +4,7 @@ class Shape {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        this.lineWidth = 5;
     }
 }
 
@@ -14,12 +15,11 @@ class PointShape extends Shape {
         window.global.ctx.setLineDash([]);
         window.global.ctx.lineJoin = 'round';
         window.global.ctx.strokeStyle = 'black';
-        window.global.ctx.lineWidth = 4;
+        window.global.ctx.lineWidth = this.lineWidth;
 
         window.global.ctx.beginPath();
 
         if (x1 === x2 && y1 === y2) {
-            window.global.ctx.beginPath();
             window.global.ctx.arc(x1, y1, 2, 0, Math.PI * 2, true);
             window.global.ctx.closePath();
             window.global.ctx.fillStyle = 'black';
@@ -59,7 +59,7 @@ class LineShape extends Shape {
         }
 
         window.global.ctx.strokeStyle = 'black';
-        window.global.ctx.lineWidth = 4;
+        window.global.ctx.lineWidth = this.lineWidth;
         window.global.ctx.stroke();
     }
 
@@ -99,7 +99,7 @@ class RectShape extends Shape {
             window.global.ctx.fill();
         }
         window.global.ctx.strokeStyle = 'black';
-        window.global.ctx.lineWidth = 4;
+        window.global.ctx.lineWidth = this.lineWidth;
         window.global.ctx.stroke();
     }
 
@@ -132,7 +132,7 @@ class EllipseShape extends Shape {
             window.global.ctx.fill();
         }
         window.global.ctx.strokeStyle = 'black';
-        window.global.ctx.lineWidth = 4;
+        window.global.ctx.lineWidth = this.lineWidth;
         window.global.ctx.stroke();
     }
 
@@ -162,7 +162,7 @@ class LineOOShape extends EllipseShape {
             window.global.ctx.beginPath();
             window.global.ctx.setLineDash([]);
             window.global.ctx.strokeStyle = 'black';
-            window.global.ctx.lineWidth = 4;
+            window.global.ctx.lineWidth = this.lineWidth;
             window.global.ctx.lineJoin = 'round';
             window.global.ctx.moveTo(sp1.x, sp1.y);
             window.global.ctx.lineTo(sp2.x, sp2.y);

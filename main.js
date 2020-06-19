@@ -14,7 +14,7 @@ function createWindow() {
 
   win.loadFile('./renderer/canvas.html');
 
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 
   win.on('closed', () => {
     win = null;
